@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Create books
+    Lorem-Ipsum Generator
 @stop
 
 
@@ -12,12 +12,11 @@ Use it to add specific things that *this* View needs in the head,
 such as a page specific styesheets.
 --}}
 @section('head')
-    <link href="/css/books/create.css" type='text/css' rel='stylesheet'>
+    <link href="/css/p3.css" type='text/css' rel='stylesheet'>
 @stop
 
 
 @section('content')
-<h1>Add a new book</h1>
 @if(count($errors) > 0)
     <ul>
         @foreach ($errors->all() as $error)
@@ -25,11 +24,18 @@ such as a page specific styesheets.
         @endforeach
     </ul>
 @endif
-<form method='POST' action='/books/create'>
-<input type='hidden' name='_token' value='{{ csrf_token() }}'>
-<input type='text' name='title'>
-<input type='submit' value='Submit'>
-</form>
+
+    <form method='POST' action='/lorem-ipsum'>
+    <input type='hidden' name='_token' value='{{ csrf_token() }}'>
+    <p>
+      <h2>Please input the number of paragraphs you wish to generate.</h2>
+    </p>
+    <input type='int' name='usernum'>
+    <input type='submit' value='Submit'>
+
+    </form>
+
+    <p>{!! $finalgen !!}</p>
 @stop
 
 
@@ -39,5 +45,5 @@ Use it to add specific things that *this* View needs at the end of the body,
 such as a page specific JavaScript files.
 --}}
 @section('body')
-    <script src="/js/books/show.js"></script>
+    <script src="/js/lorem/lorem.js"></script>
 @stop

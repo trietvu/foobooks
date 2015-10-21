@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +22,8 @@ Route::get('/books/show/{title?}', 'BookController@getShow');
 
 Route::get('/books/create', 'BookController@getCreate');
 
+Route::post('/books/create', 'BookController@postCreate');
+
 Route::get('/practice', function() {
 
   $random = new Random();
@@ -29,3 +32,9 @@ Route::get('/practice', function() {
 });
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('/lorem-ipsum', 'LoremController@getLorem');
+Route::post('/lorem-ipsum', 'LoremController@postLorem');
+
+Route::get('/usergenerator', 'UserGenController@getUserGen');
+Route::post('/usergenerator', 'UserGenController@postUserGen');
