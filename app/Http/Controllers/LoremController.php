@@ -14,11 +14,11 @@ class LoremController extends Controller {
     }
 
     public function getLorem() {
-          $generator = new Generator();
-          $paragraphs = $generator->getParagraphs(5);
-          $finalgen = implode('<p>', $paragraphs);
-          return view('lorem-ipsum.get')->with('finalgen', $finalgen);
-        }
+        $generator = new Generator();
+        $paragraphs = $generator->getParagraphs(3);
+        $finalgen = implode('<p>', $paragraphs);
+        return view('lorem-ipsum.get')->with('finalgen', $finalgen);
+    }
 
     public function postLorem(Request $request) {
         $this->validate($request,
@@ -26,9 +26,9 @@ class LoremController extends Controller {
         ]);
         $usernum = $request->input('usernum');
 
-            $generator = new Generator();
-            $paragraphs = $generator->getParagraphs($usernum);
-            $finalgen = implode('<p>', $paragraphs);
-            return view('lorem-ipsum.get')->with('finalgen', $finalgen);
-        }
+        $generator = new Generator();
+        $paragraphs = $generator->getParagraphs($usernum);
+        $finalgen = implode('<p>', $paragraphs);
+        return view('lorem-ipsum.create')->with('finalgen', $finalgen);
+    }
 }

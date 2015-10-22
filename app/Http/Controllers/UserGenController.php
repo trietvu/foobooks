@@ -23,59 +23,45 @@ class UserGenController extends Controller {
 
   public function postUserGen(Request $request) {
     $users = $request->input('users');
+    $this->validate($request,
+    ['users' => 'required|integer|min:1|max:99',
+    ]);
+
     $title = $request->input('title');
     $birthdate = $request->input('birthdate');
     $address = $request->input('address');
     $phone = $request->input('phone');
     $profile = $request->input('profile');
 
-//    for ($i = 0; $i < $users; $i++){
     $faker = Faker::create();
-    if (empty($title)){
-      $username = $faker->name.'<br>';
-    }
-    else{
-      $username = $faker->title.' '.$faker->name.'<br>';
-    }
-    if (empty($birthdate)){
-      $birthday = '';
-    }
-    else{
-      $birthday = 'Birthdate: '.$faker->dateTimeThisCentury->format('m-d-Y').'<br>';
-    }
-    if (empty($address)){
-      $useraddress = '';
-    }
-    else{
-      $useraddress =  $faker->streetAddress.'<br>'.$faker->city.', '.$faker->state.' '. $faker->postcode.'<br>';
-    }
-    if (empty($phone)){
-      $userphone = '';
-    }
-    else{
-      $userphone = $faker->phoneNumber.'<br>';
-    }
-    if (empty($profile)){
-      $userprofile = '';
-    }
-    else{
-      $userprofile = 'Profile: '.$faker->text.'<br><br>';
-    }
-    $finalprofile = $username.$birthday.$useraddress.$userphone.$userprofile;
-    return view('usergenerator.postusergen')->with('finalprofile', $finalprofile)->with('users', $users);
-  //  }
-/*
-$faker= \Faker\Factory::create();
-for ($i = 0; $i <= 6; $i++) {
-        $fake = array($faker->name);
-        if ($request->input('address') == TRUE) {
-        	array_push($fake, $faker->address);
+    $username = array();
+
+      for ($i = 0; $i < $users; $i++){
+        if (isset($title)){
+        $username[] = '<div class="users">'.$faker->title.' '.$faker->name.'<br>';
         }
-        if ($request->input('number') == TRUE) {
-        	array_push($fake, $faker->phoneNumber);
+      else{
+            $username[] = '<div class="users">'.$faker->name.'<br>';
         }
-}
-*/
+        if (isset($birthdate)){
+        $username[] = 'Birthdate: '.$faker->dateTimeThisCentury->format('m-d-Y').'<br><br>';
+        }
+        else{ $username[] = '<br>';
+
+        }
+        if (isset($address)){
+        $username[] = '<b>Address:</b><br>'.$faker->streetAddress.'<br>'.$faker->city.' '.$faker->state.' '.$faker->postcode.'<br><br>';
+        }
+        if (isset($phone)){
+        $username[] = 'Phone number: '.$faker->phoneNumber.'<br><br>';
+        }
+        if (isset($profile)){
+        $username[] = 'Profile: '.$faker->text.'</div>';
+        }
+        else{
+          $username[] = '</div>';
+        }
+      }
+      return view('usergenerator.postusergen')->with('users', $users)->with('username', $username);
   }
-// use the factory to create a Faker\Generator instance
 }

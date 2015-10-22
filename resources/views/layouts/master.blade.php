@@ -3,7 +3,7 @@
 <head>
     <title>
         {{-- Yield the title if it exists, otherwise default to 'Foobooks' --}}
-        @yield('title','Foobooks')
+        @yield('title','P3 - Lorem Ipsum/Random User Generator')
     </title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset='utf-8'>
@@ -22,10 +22,7 @@
 <body>
 
     <header>
-        <img
-      {{--  src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-logo@2x.png'
-        style='width:300px'
-        alt='Foobooks Logo'>--}}
+
     </header>
 
     <section>
@@ -34,10 +31,10 @@
     </section>
 
     <footer>
-        &copy; {{ date('Y') }}
+
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
     {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
     @yield('body')

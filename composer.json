@@ -10,7 +10,7 @@
         "badcow/lorem-ipsum": "^1.1",
         "laravelcollective/html": "^5.1",
         "illuminate/http": "^5.1",
-        "fzaninotto/faker": "^1.5",
+        "fzaninotto/faker": "^1.5"
 
     },
     "require-dev": {
